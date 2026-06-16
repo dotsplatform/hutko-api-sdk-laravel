@@ -16,13 +16,11 @@ use Dots\Hutko\App\Client\Requests\Payments\CaptureRequest;
 use Dots\Hutko\App\Client\Requests\Payments\CheckoutRequest;
 use Dots\Hutko\App\Client\Requests\Payments\DTO\CaptureRequestDTO;
 use Dots\Hutko\App\Client\Requests\Payments\DTO\CheckoutRequestDTO;
-use Dots\Hutko\App\Client\Requests\Payments\DTO\RecurringRequestDTO;
 use Dots\Hutko\App\Client\Requests\Payments\DTO\ReverseRequestDTO;
 use Dots\Hutko\App\Client\Requests\Payments\DTO\SettlementRequestDTO;
 use Dots\Hutko\App\Client\Requests\Payments\DTO\StatusRequestDTO;
 use Dots\Hutko\App\Client\Requests\Payments\DTO\TransactionListRequestDTO;
 use Dots\Hutko\App\Client\Requests\Payments\FiscalizationRequest;
-use Dots\Hutko\App\Client\Requests\Payments\RecurringRequest;
 use Dots\Hutko\App\Client\Requests\Payments\ReverseRequest;
 use Dots\Hutko\App\Client\Requests\Payments\SettlementRequest;
 use Dots\Hutko\App\Client\Requests\Payments\StatusRequest;
@@ -60,20 +58,6 @@ class HutkoConnector extends Connector
         );
 
         return $this->send(new CheckoutRequest($requestData))->dto();
-    }
-
-    /**
-     * @throws HutkoException
-     */
-    public function recurring(RecurringRequestDTO $dto): StartPaymentResponseDTO
-    {
-        $requestData = RequestDataGenerator::generate(
-            $this->authDto,
-            $dto->toArray(),
-            ApiVersion::V2,
-        );
-
-        return $this->send(new RecurringRequest($requestData))->dto();
     }
 
     /**
