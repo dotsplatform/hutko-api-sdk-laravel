@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Description of TransactionListRequest.php
  * @copyright Copyright (c) DOTSPLATFORM, LLC
@@ -15,8 +16,7 @@ class TransactionListRequest extends PostHutkoRequest
 {
     public function __construct(
         private readonly array $requestData,
-    ) {
-    }
+    ) {}
 
     protected function defaultBody(): array
     {

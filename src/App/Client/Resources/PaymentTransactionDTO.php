@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Description of PaymentTransactionDTO.php
  * @copyright Copyright (c) DOTSPLATFORM, LLC

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Description of SettlementPaymentResponseDTO.php
  * @copyright Copyright (c) DOTSPLATFORM, LLC

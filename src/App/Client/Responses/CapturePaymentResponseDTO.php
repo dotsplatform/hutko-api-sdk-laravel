@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Description of CapturePaymentResponseDTO.php
  * @copyright Copyright (c) DOTSPLATFORM, LLC

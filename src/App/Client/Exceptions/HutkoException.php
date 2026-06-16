@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Description of HutkoException.php
  * @copyright Copyright (c) DOTSPLATFORM, LLC

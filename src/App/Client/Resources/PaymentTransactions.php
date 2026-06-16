@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Description of PaymentTransactions.php
  * @copyright Copyright (c) DOTSPLATFORM, LLC
@@ -15,7 +16,7 @@ class PaymentTransactions extends Collection
     {
         return new self(
             array_map(
-                fn (array $item) => PaymentTransactionDTO::fromArray($item),
+                fn(array $item) => PaymentTransactionDTO::fromArray($item),
                 $data,
             )
         );

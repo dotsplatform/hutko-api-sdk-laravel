@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Description of StartPaymentResponseDTO.php
  * @copyright Copyright (c) DOTSPLATFORM, LLC

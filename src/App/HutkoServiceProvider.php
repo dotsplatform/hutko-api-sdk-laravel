@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Description of HutkoServiceProvider.php
  * @copyright Copyright (c) DOTSPLATFORM, LLC
@@ -14,7 +15,7 @@ class HutkoServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->mergeConfigFrom(
-            __DIR__.'/../../config/hutko.php',
+            __DIR__ . '/../../config/hutko.php',
             'hutko'
         );
     }
@@ -22,7 +23,7 @@ class HutkoServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->publishes([
-            __DIR__.'/../../config/hutko.php' => config_path('hutko.php'),
+            __DIR__ . '/../../config/hutko.php' => config_path('hutko.php'),
         ], 'config');
     }
 }

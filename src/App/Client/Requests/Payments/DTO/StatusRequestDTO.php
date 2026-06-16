@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Description of StatusRequestDTO.php
  * @copyright Copyright (c) DOTSPLATFORM, LLC

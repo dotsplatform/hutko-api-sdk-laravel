@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Description of HutkoResponseDTO.php
  * @copyright Copyright (c) DOTSPLATFORM, LLC
@@ -29,8 +30,8 @@ class HutkoResponseDTO extends DTO
 
     public static function fromArray(array $data): static
     {
-        $data['error_code'] = $data['error_code'] ?? $data['err_code'] ?? null;
-        $data['error_message'] = $data['error_message'] ?? $data['error'] ?? null;
+        $data['error_code'] ??= $data['err_code'] ?? null;
+        $data['error_message'] ??= $data['error'] ?? null;
 
         return parent::fromArray($data);
     }

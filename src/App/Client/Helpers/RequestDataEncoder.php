@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Description of RequestDataEncoder.php
  * @copyright Copyright (c) DOTSPLATFORM, LLC

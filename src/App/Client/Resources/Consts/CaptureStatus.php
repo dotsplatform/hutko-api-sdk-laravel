@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Description of CaptureStatus.php
  * @copyright Copyright (c) DOTSPLATFORM, LLC

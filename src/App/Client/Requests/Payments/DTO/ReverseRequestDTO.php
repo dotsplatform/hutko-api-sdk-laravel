@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Description of ReverseRequestDTO.php
  * @copyright Copyright (c) DOTSPLATFORM, LLC

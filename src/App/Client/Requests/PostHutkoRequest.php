@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Description of PostHutkoRequest.php
  * @copyright Copyright (c) DOTSPLATFORM, LLC

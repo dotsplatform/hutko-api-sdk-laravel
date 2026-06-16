@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Description of HutkoWebhookDTO.php
  * @copyright Copyright (c) DOTSPLATFORM, LLC

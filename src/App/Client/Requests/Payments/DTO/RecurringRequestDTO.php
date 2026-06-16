@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Description of RecurringRequestDTO.php
  * @copyright Copyright (c) DOTSPLATFORM, LLC

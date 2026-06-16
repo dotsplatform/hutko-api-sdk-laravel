@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Description of FiscalizationRequest.php
  * @copyright Copyright (c) DOTSPLATFORM, LLC
@@ -14,8 +15,7 @@ class FiscalizationRequest extends PostHutkoRequest
 {
     public function __construct(
         private readonly array $requestData,
-    ) {
-    }
+    ) {}
 
     protected function defaultBody(): array
     {

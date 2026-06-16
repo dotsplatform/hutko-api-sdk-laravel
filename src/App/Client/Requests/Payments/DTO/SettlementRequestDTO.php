@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Description of SettlementRequestDTO.php
  * @copyright Copyright (c) DOTSPLATFORM, LLC

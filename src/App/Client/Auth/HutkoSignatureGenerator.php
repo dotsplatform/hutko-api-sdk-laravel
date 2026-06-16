@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Description of HutkoSignatureGenerator.php
  * @copyright Copyright (c) DOTSPLATFORM, LLC

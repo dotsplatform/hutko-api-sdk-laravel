@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Description of ErrorResponseDTO.php
  * @copyright Copyright (c) DOTSPLATFORM, LLC

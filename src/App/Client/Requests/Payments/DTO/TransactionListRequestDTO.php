@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Description of TransactionListRequestDTO.php
  * @copyright Copyright (c) DOTSPLATFORM, LLC

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Description of CheckoutRequestDTO.php
  * @copyright Copyright (c) DOTSPLATFORM, LLC

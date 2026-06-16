@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Description of BaseHutkoRequest.php
  * @copyright Copyright (c) DOTSPLATFORM, LLC

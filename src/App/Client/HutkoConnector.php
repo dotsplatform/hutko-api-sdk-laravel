@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Description of HutkoConnector.php
  * @copyright Copyright (c) DOTSPLATFORM, LLC
@@ -46,8 +47,7 @@ class HutkoConnector extends Connector
 
     public function __construct(
         private readonly HutkoAuthDTO $authDto,
-    ) {
-    }
+    ) {}
 
     /**
      * @throws HutkoException

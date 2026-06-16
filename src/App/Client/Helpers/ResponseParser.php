@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Description of ResponseParser.php
  * @copyright Copyright (c) DOTSPLATFORM, LLC

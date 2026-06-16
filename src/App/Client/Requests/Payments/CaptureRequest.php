@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Description of CaptureRequest.php
  * @copyright Copyright (c) DOTSPLATFORM, LLC
@@ -15,8 +16,7 @@ class CaptureRequest extends PostHutkoRequest
 {
     public function __construct(
         private readonly array $requestData,
-    ) {
-    }
+    ) {}
 
     protected function defaultBody(): array
     {
