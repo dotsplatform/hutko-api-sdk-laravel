@@ -1,5 +1,6 @@
 /vendor/
-/.idea/
-composer.lock
+testbench.yaml
 .php-cs-fixer.cache
-.phpunit.result.cache
+.idea
+.phpunit.cache
+/storage/logs/*
