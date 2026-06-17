@@ -34,6 +34,8 @@ class CheckoutRequestDTO extends DTO
 
     protected ?int $lifetime;
 
+    protected ?string $lang;
+
     public function getOrderId(): string
     {
         return $this->order_id;

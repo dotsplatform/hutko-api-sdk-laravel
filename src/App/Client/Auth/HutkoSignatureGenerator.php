@@ -44,7 +44,7 @@ class HutkoSignatureGenerator
         return sha1("{$authDTO->getMerchantKey()}|{$encodedData}");
     }
 
-    public static function encodeDataForVersion2(array $data): string
+    private static function encodeDataForVersion2(array $data): string
     {
         return base64_encode(json_encode([
             'order' => $data,
