@@ -17,20 +17,16 @@ use Dots\Hutko\App\Client\Requests\Payments\CheckoutRequest;
 use Dots\Hutko\App\Client\Requests\Payments\DTO\CaptureRequestDTO;
 use Dots\Hutko\App\Client\Requests\Payments\DTO\CheckoutRequestDTO;
 use Dots\Hutko\App\Client\Requests\Payments\DTO\ReverseRequestDTO;
-use Dots\Hutko\App\Client\Requests\Payments\DTO\SettlementRequestDTO;
 use Dots\Hutko\App\Client\Requests\Payments\DTO\StatusRequestDTO;
 use Dots\Hutko\App\Client\Requests\Payments\DTO\TransactionListRequestDTO;
 use Dots\Hutko\App\Client\Requests\Payments\FiscalizationRequest;
 use Dots\Hutko\App\Client\Requests\Payments\ReverseRequest;
-use Dots\Hutko\App\Client\Requests\Payments\SettlementRequest;
 use Dots\Hutko\App\Client\Requests\Payments\StatusRequest;
 use Dots\Hutko\App\Client\Requests\Payments\TransactionListRequest;
-use Dots\Hutko\App\Client\Resources\Consts\ApiVersion;
 use Dots\Hutko\App\Client\Responses\CapturePaymentResponseDTO;
 use Dots\Hutko\App\Client\Responses\ErrorResponseDTO;
 use Dots\Hutko\App\Client\Responses\PaymentResponseDTO;
 use Dots\Hutko\App\Client\Responses\ReversePaymentResponseDTO;
-use Dots\Hutko\App\Client\Responses\SettlementPaymentResponseDTO;
 use Dots\Hutko\App\Client\Responses\StartPaymentResponseDTO;
 use Dots\Hutko\App\Client\Responses\TransactionsResponseDTO;
 use RuntimeException;
@@ -97,20 +93,6 @@ class HutkoConnector extends Connector
         );
 
         return $this->send(new ReverseRequest($requestData))->dto();
-    }
-
-    /**
-     * @throws HutkoException
-     */
-    public function settlement(SettlementRequestDTO $dto): SettlementPaymentResponseDTO
-    {
-        $requestData = RequestDataGenerator::generate(
-            $this->authDto,
-            $dto->toArray(),
-            ApiVersion::V2,
-        );
-
-        return $this->send(new SettlementRequest($requestData))->dto();
     }
 
     /**
