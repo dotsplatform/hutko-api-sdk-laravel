@@ -80,4 +80,9 @@ class CheckoutRequestDTO extends DTO
     {
         return $this->merchant_data;
     }
+
+    public function getLang(): ?string
+    {
+        return $this->lang;
+    }
 }
