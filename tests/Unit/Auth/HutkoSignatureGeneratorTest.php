@@ -152,11 +152,143 @@ class HutkoSignatureGeneratorTest extends TestCase
         $this->assertSame($explicitV1, $default);
     }
 
+    /**
+     * A "0" value is NOT empty and must stay in the signature string
+     * (the docs warn twice about languages that coerce 0 to an empty value).
+     */
+    public function testVersion1SignatureKeepsZeroValues(): void
+    {
+        $auth = $this->makeAuthDto();
+
+        $signature = HutkoSignatureGenerator::generate($auth, [
+            'order_id' => 'test123456',
+            'amount' => '0',
+            'currency' => 'USD',
+        ], ApiVersion::V1);
+
+        $this->assertSame(sha1('test|0|USD|1396424|test123456'), $signature);
+    }
+
+    /**
+     * Regression: nullable DTO fields serialize to null, and the old
+     * array_filter($data, 'strlen') emitted a "Passing null to strlen()"
+     * deprecation on every request. Generation must now be deprecation-free.
+     */
+    public function testVersion1SignatureDoesNotEmitDeprecationForNullValues(): void
+    {
+        $auth = $this->makeAuthDto();
+
+        set_error_handler(static function (int $errno, string $message): bool {
+            throw new \RuntimeException($message);
+        }, E_DEPRECATED);
+
+        try {
+            $signature = HutkoSignatureGenerator::generate($auth, [
+                'order_id' => 'test123456',
+                'order_desc' => 'test order',
+                'currency' => 'USD',
+                'amount' => '125',
+                'server_callback_url' => null,
+                'response_url' => null,
+                'merchant_data' => null,
+            ], ApiVersion::V1);
+        } finally {
+            restore_error_handler();
+        }
+
+        $this->assertSame(sha1('test|125|USD|1396424|test order|test123456'), $signature);
+    }
+
+    public function testCheckReturnsTrueForValidCallbackSignature(): void
+    {
+        $auth = $this->makeAuthDto();
+        $callback = $this->makeCallbackPayload();
+
+        $this->assertTrue(HutkoSignatureGenerator::check($callback, $auth));
+    }
+
+    public function testCheckReturnsFalseForTamperedCallback(): void
+    {
+        $auth = $this->makeAuthDto();
+        $callback = $this->makeCallbackPayload();
+        $callback['order_status'] = 'declined';
+
+        $this->assertFalse(HutkoSignatureGenerator::check($callback, $auth));
+    }
+
+    public function testCheckReturnsFalseWhenSignatureIsMissing(): void
+    {
+        $auth = $this->makeAuthDto();
+        $callback = $this->makeCallbackPayload();
+        unset($callback['signature']);
+
+        $this->assertFalse(HutkoSignatureGenerator::check($callback, $auth));
+    }
+
+    /**
+     * response_signature_string is a test-mode hint and must be excluded
+     * from the calculation, so its presence must not break verification.
+     */
+    public function testCheckIgnoresResponseSignatureStringField(): void
+    {
+        $auth = $this->makeAuthDto();
+        $callback = $this->makeCallbackPayload();
+        $callback['response_signature_string'] = 'this hint must be ignored';
+
+        $this->assertTrue(HutkoSignatureGenerator::check($callback, $auth));
+    }
+
     private function makeAuthDto(): HutkoAuthDTO
     {
         return HutkoAuthDTO::fromArray([
             'merchantId' => self::MERCHANT_ID,
             'merchantKey' => self::MERCHANT_KEY,
         ]);
+    }
+
+    /**
+     * The callback example from the official Hutko documentation.
+     * Its signature equals sha1() of the documented response_signature_string
+     * (with the masked password replaced by "test").
+     */
+    private function makeCallbackPayload(): array
+    {
+        return [
+            'rrn' => '429417347068',
+            'masked_card' => '444455XXXXXX6666',
+            'sender_cell_phone' => '',
+            'response_status' => 'success',
+            'sender_account' => '',
+            'fee' => '',
+            'rectoken_lifetime' => '',
+            'reversal_amount' => '0',
+            'settlement_amount' => '0',
+            'actual_amount' => '3324000',
+            'order_status' => 'approved',
+            'response_description' => '',
+            'verification_status' => '',
+            'order_time' => '21.07.2017 15:20:27',
+            'actual_currency' => 'UAH',
+            'order_id' => '14#1500639628',
+            'parent_order_id' => '',
+            'merchant_data' => '',
+            'tran_type' => 'purchase',
+            'eci' => '',
+            'settlement_date' => '',
+            'payment_system' => 'card',
+            'rectoken' => '',
+            'approval_code' => '027440',
+            'merchant_id' => 1396424,
+            'settlement_currency' => '',
+            'payment_id' => 51247263,
+            'product_id' => '',
+            'currency' => 'UAH',
+            'card_bin' => 444455,
+            'response_code' => '',
+            'card_type' => 'VISA',
+            'amount' => '3324000',
+            'sender_email' => 'test@email.com',
+            'signature' => 'c2f8bce2a279594a01566d1229f9fbbf172589fa',
+        ];
     }
 }

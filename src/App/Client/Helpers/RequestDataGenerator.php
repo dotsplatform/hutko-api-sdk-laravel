@@ -28,7 +28,7 @@ class RequestDataGenerator
     private static function generateVersion1(HutkoAuthDTO $authDTO, array $data): array
     {
         $data['signature'] = HutkoSignatureGenerator::generate($authDTO, $data, ApiVersion::V1);
-        $data = array_filter($data, 'strlen');
+        $data = array_filter($data, static fn($value): bool => (string) $value !== '');
         ksort($data);
 
         return [
